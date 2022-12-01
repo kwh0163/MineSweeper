@@ -7,6 +7,8 @@ int Emap[40][20] = { 0, };
 
 bool Set = true;
 bool Game = true;
+bool menu = true;
+bool Start = true;
 
 int flag = 80;
 int Block = 800;
@@ -177,6 +179,28 @@ void GetKey() {
 	}
 }
 void DrawBlock() {
+	if (Start) {
+		if (map[px][py] == 10) {
+			map[px][py] = 0;
+			if (px != 39 && map[px + 1][py] != 10)map[px + 1][py]--;
+			if (px != 39 && py != 19 && map[px + 1][py + 1] != 10)map[px + 1][py + 1]--;
+			if (py != 19 && map[px][py + 1] != 10)map[px][py + 1]--;
+			if (px != 0 && py != 19 && map[px - 1][py + 1] != 10)map[px - 1][py + 1]--;
+			if (px != 0 && map[px - 1][py] != 10)map[px - 1][py]--;
+			if (px != 0 && py != 0 && map[px - 1][py - 1] != 10)map[px - 1][py - 1]--;
+			if (py != 0 && map[px][py - 1] != 10)map[px][py - 1]--;
+			if (px != 39 && py != 0 && map[px + 1][py - 1] != 10)map[px + 1][py - 1]--;
+		}
+		if (px != 39 && map[px + 1][py] == 10)map[px][py]++;
+		if (px != 39 && py != 19 && map[px + 1][py + 1] == 10)map[px][py]++;
+		if (py != 19 && map[px][py + 1] == 10)map[px][py]++;
+		if (px != 0 && py != 19 && map[px - 1][py + 1] == 10)map[px][py]++;
+		if (px != 0 && map[px - 1][py] == 10)map[px][py]++;
+		if (px != 0 && py != 0 && map[px - 1][py - 1] == 10)map[px][py]++;
+		if (py != 0 && map[px][py - 1] == 10)map[px][py]++;
+		if (px != 39 && py != 0 && map[px + 1][py - 1] == 10)map[px][py]++;
+		Start = false;
+	}
 	gotoxy(px, py);
 	if (Emap[px][py] == 2) return;
 	switch (map[px][py]) {
@@ -299,10 +323,10 @@ void PlayGame() {
 			Game = false;
 		}
 	}
+	menu = true;
 	Menu();
 }
 void Menu() {
-	bool menu = true;
 	system("cls");
 	int xx = 22;
 	int yy = 20;
@@ -340,10 +364,14 @@ void Menu() {
 		if (GetAsyncKeyState(VK_SPACE)) {
 			if (yy == 20) {
 				Game = true;
+				menu = false;
+				Sleep(200);
 				PlayGame();
 			}
 			else if (yy == 21) {
+				Game = false;
 				menu = false;
+				Sleep(200);
 			}
 		}
 	}
