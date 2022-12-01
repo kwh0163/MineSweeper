@@ -10,7 +10,7 @@ bool Game = true;
 bool menu = true;
 bool Start = true;
 
-int flag = 80;
+int flag = 100;
 int Block = 800;
 
 int px = 0;
@@ -301,6 +301,10 @@ void GameOver() {
 	Game = false;
 }
 void PlayGame() {
+	px = 0;
+	py = 0;
+	flag = 100;
+	Block = 800;
 	system("cls");
 	for (int i = 0; i < 40; i++) {
 		for (int j = 0; j < 20; j++) {
@@ -311,12 +315,9 @@ void PlayGame() {
 	SetBlock();
 	SetMine();
 	gotoxy(0, 0);
-	px = 0;
-	py = 0;
-	flag = 80;
 	while (Game) {
 		GetKey();
-		if (Block == 80) {
+		if (Block == 100) {
 			system("cls");
 			cout << "PerFect!";
 			Sleep(2000);
