@@ -305,6 +305,7 @@ void PlayGame() {
 	py = 0;
 	flag = 100;
 	Block = 800;
+	Start = true;
 	system("cls");
 	for (int i = 0; i < 40; i++) {
 		for (int j = 0; j < 20; j++) {
