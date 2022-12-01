@@ -91,7 +91,7 @@ void DrawEmpty(int x, int y) {
 	if (x != 0 && y != 19 && map[x - 1][y + 1] != 10 && Emap[x - 1][y + 1] == 0)DrawEmpty(x - 1, y + 1);
 }
 void SetMine() {
-	for (int i = 0; i < 80; i++) {
+	for (int i = 0; i < 100; i++) {
 		int _x = random(0, 39);
 		int _y = random(0, 19);
 		if (map[_x][_y] != 10) {
@@ -190,15 +190,15 @@ void DrawBlock() {
 			if (px != 0 && py != 0 && map[px - 1][py - 1] != 10)map[px - 1][py - 1]--;
 			if (py != 0 && map[px][py - 1] != 10)map[px][py - 1]--;
 			if (px != 39 && py != 0 && map[px + 1][py - 1] != 10)map[px + 1][py - 1]--;
+			if (px != 39 && map[px + 1][py] == 10)map[px][py]++;
+			if (px != 39 && py != 19 && map[px + 1][py + 1] == 10)map[px][py]++;
+			if (py != 19 && map[px][py + 1] == 10)map[px][py]++;
+			if (px != 0 && py != 19 && map[px - 1][py + 1] == 10)map[px][py]++;
+			if (px != 0 && map[px - 1][py] == 10)map[px][py]++;
+			if (px != 0 && py != 0 && map[px - 1][py - 1] == 10)map[px][py]++;
+			if (py != 0 && map[px][py - 1] == 10)map[px][py]++;
+			if (px != 39 && py != 0 && map[px + 1][py - 1] == 10)map[px][py]++;
 		}
-		if (px != 39 && map[px + 1][py] == 10)map[px][py]++;
-		if (px != 39 && py != 19 && map[px + 1][py + 1] == 10)map[px][py]++;
-		if (py != 19 && map[px][py + 1] == 10)map[px][py]++;
-		if (px != 0 && py != 19 && map[px - 1][py + 1] == 10)map[px][py]++;
-		if (px != 0 && map[px - 1][py] == 10)map[px][py]++;
-		if (px != 0 && py != 0 && map[px - 1][py - 1] == 10)map[px][py]++;
-		if (py != 0 && map[px][py - 1] == 10)map[px][py]++;
-		if (px != 39 && py != 0 && map[px + 1][py - 1] == 10)map[px][py]++;
 		Start = false;
 	}
 	gotoxy(px, py);
